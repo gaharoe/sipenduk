@@ -1,0 +1,117 @@
+erDiagram
+    PENDUDUK {
+        string nik PK
+        string nama
+        string tempat_lahir
+        date tanggal_lahir
+        enum jenis_kelamin
+        enum agama
+        enum status_perkawinan
+        string pekerjaan
+        enum pendidikan
+        enum kewarganegaraan
+        string alamat
+        string rt
+        string rw
+        string desa
+        string kecamatan
+        string kabupaten
+        string provinsi
+        string foto
+        string no_telp
+        string email
+        enum status_penduduk
+        date created_at
+        date updated_at
+    }
+    
+    KARTU_KELUARGA {
+        string no_kk PK
+        string alamat
+        string rt
+        string rw
+        string desa
+        string kecamatan
+        string kabupaten
+        string provinsi
+        date tanggal_terbit
+        date created_at
+        date updated_at
+    }
+    
+    DETAIL_KARTU_KELUARGA {
+        string id PK
+        string no_kk FK
+        string nik FK
+        enum status_hubungan
+        date created_at
+        date updated_at
+    }
+    
+    KELAHIRAN {
+        string id PK
+        string no_akta
+        string nik_anak FK
+        string nik_ayah FK
+        string nik_ibu FK
+        string tempat_lahir
+        date tanggal_lahir
+        enum jenis_kelamin
+        string penolong
+        string berat
+        string panjang
+        date created_at
+        date updated_at
+    }
+    
+    KEMATIAN {
+        string id PK
+        string nik FK
+        date tanggal_kematian
+        string tempat_kematian
+        string sebab_kematian
+        string pelapor
+        date created_at
+        date updated_at
+    }
+    
+    KEDATANGAN {
+        string id PK
+        string nik FK
+        date tanggal_datang
+        string alamat_asal
+        string alamat_tujuan
+        string alasan
+        date created_at
+        date updated_at
+    }
+    
+    PERPINDAHAN {
+        string id PK
+        string nik FK
+        date tanggal_pindah
+        string alamat_asal
+        string alamat_tujuan
+        string alasan
+        date created_at
+        date updated_at
+    }
+    
+    PENGGUNA {
+        string id PK
+        string username
+        string password
+        string nama
+        enum role
+        date created_at
+        date updated_at
+    }
+    
+    KARTU_KELUARGA ||--o{ DETAIL_KARTU_KELUARGA : "memiliki"
+    PENDUDUK ||--o{ DETAIL_KARTU_KELUARGA : "terdaftar pada"
+    PENDUDUK ||--o{ KELAHIRAN : "tercatat sebagai anak"
+    PENDUDUK ||--o{ KELAHIRAN : "tercatat sebagai ayah"
+    PENDUDUK ||--o{ KELAHIRAN : "tercatat sebagai ibu"
+    PENDUDUK ||--o{ KEMATIAN : "mengalami"
+    PENDUDUK ||--o{ KEDATANGAN : "melakukan"
+    PENDUDUK ||--o{ PERPINDAHAN : "melakukan"

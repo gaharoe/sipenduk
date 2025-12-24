@@ -1,0 +1,44 @@
+sequenceDiagram
+    actor Operator
+    participant UI as Antarmuka Pengguna
+    participant SC as Server Component
+    participant SA as Server Action
+    participant DB as Database Redis
+    participant PDF as PDF Generator
+    
+    Operator->>UI: Akses halaman Layanan Surat
+    UI->>SC: Request form pembuatan surat
+    SC->>DB: Query data penduduk
+    DB->>SC: Data penduduk
+    SC->>DB: Query data pejabat
+    DB->>SC: Data pejabat
+    SC->>UI: Render form pembuatan surat
+    
+    Operator->>UI: Pilih jenis surat
+    Operator->>UI: Pilih pemohon
+    Operator->>UI: Isi keperluan dan data lainnya
+    Operator->>UI: Pilih penandatangan
+    Operator->>UI: Klik tombol Preview
+    
+    UI->>SA: Request preview surat
+    SA->>PDF: Generate preview surat
+    PDF->>UI: Preview surat
+    UI->>Operator: Tampilkan preview surat
+    
+    Operator->>UI: Klik tombol Simpan/Cetak
+    
+    UI->>SA: Kirim data surat
+    SA->>SA: Validasi data
+    
+    alt Data Valid
+        SA->>DB: Simpan data surat
+        DB->>SA: Konfirmasi penyimpanan
+        SA->>PDF: Generate file PDF
+        PDF->>SA: File PDF
+        SA->>DB: Catat log aktivitas
+        SA->>UI: Kirim file PDF dan notifikasi sukses
+        UI->>Operator: Tampilkan opsi download/print dan pesan sukses
+    else Data Tidak Valid
+        SA->>UI: Kirim pesan error
+        UI->>Operator: Tampilkan pesan error
+    end

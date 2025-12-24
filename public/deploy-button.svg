@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="250" height="32" fill="none">
+  <rect width="250" height="32" fill="#1A1A1A" rx="6"/>
+  <rect width="249" height="31" x=".5" y=".5" stroke="#fff" stroke-opacity=".14" rx="5.5" />
+  <g clip-path="url(#a)">
+    <path fill="#EDEDED" fill-rule="evenodd" d="m16 10.75 6 10.5H10l6-10.5Z" clip-rule="evenodd" />
+  </g>
+  <path stroke="#fff" stroke-opacity=".14" d="M31.5 1v30" />
+  <text x="40" y="21" fill="#EDEDED" font-family="Arial, sans-serif" font-size="14">Deploy cepat dengan Vercel</text>
+  <defs>
+    <clipPath id="a">
+      <path fill="#fff" d="M0 0h12v12H0z" fill-opacity="1" transform="translate(10 10)"/>
+    </clipPath>
+  </defs>
+</svg>

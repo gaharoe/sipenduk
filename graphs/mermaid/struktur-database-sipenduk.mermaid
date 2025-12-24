@@ -1,0 +1,231 @@
+classDiagram
+    class PENDUDUK {
+        +varchar(16) nik PK
+        +varchar(100) nama
+        +varchar(50) tempat_lahir
+        +date tanggal_lahir
+        +enum jenis_kelamin
+        +enum agama
+        +enum status_perkawinan
+        +varchar(50) pekerjaan
+        +enum pendidikan
+        +enum kewarganegaraan
+        +varchar(100) alamat
+        +varchar(3) rt
+        +varchar(3) rw
+        +varchar(50) desa
+        +varchar(50) kecamatan
+        +varchar(50) kabupaten
+        +varchar(50) provinsi
+        +varchar(255) foto
+        +varchar(15) no_telp
+        +varchar(50) email
+        +enum status_penduduk
+        +timestamp created_at
+        +timestamp updated_at
+        +tambahPenduduk()
+        +updatePenduduk()
+        +hapusPenduduk()
+        +getPendudukByNIK()
+        +getAllPenduduk()
+        +filterPenduduk()
+    }
+    
+    class KARTU_KELUARGA {
+        +varchar(16) no_kk PK
+        +varchar(100) alamat
+        +varchar(3) rt
+        +varchar(3) rw
+        +varchar(50) desa
+        +varchar(50) kecamatan
+        +varchar(50) kabupaten
+        +varchar(50) provinsi
+        +date tanggal_terbit
+        +timestamp created_at
+        +timestamp updated_at
+        +tambahKK()
+        +updateKK()
+        +hapusKK()
+        +getKKByNomor()
+        +getAllKK()
+        +filterKK()
+    }
+    
+    class DETAIL_KARTU_KELUARGA {
+        +varchar(36) id PK
+        +varchar(16) no_kk FK
+        +varchar(16) nik FK
+        +enum status_hubungan
+        +timestamp created_at
+        +timestamp updated_at
+        +tambahAnggota()
+        +updateStatusHubungan()
+        +hapusAnggota()
+        +getAnggotaByKK()
+        +getKKByAnggota()
+    }
+    
+    class KELAHIRAN {
+        +varchar(36) id PK
+        +varchar(20) no_akta
+        +varchar(16) nik_anak FK
+        +varchar(16) nik_ayah FK
+        +varchar(16) nik_ibu FK
+        +varchar(50) tempat_lahir
+        +date tanggal_lahir
+        +enum jenis_kelamin
+        +varchar(50) penolong
+        +decimal(5,2) berat
+        +decimal(5,2) panjang
+        +timestamp created_at
+        +timestamp updated_at
+        +tambahKelahiran()
+        +updateKelahiran()
+        +hapusKelahiran()
+        +getKelahiranById()
+        +getKelahiranByNIK()
+        +getAllKelahiran()
+        +filterKelahiran()
+    }
+    
+    class KEMATIAN {
+        +varchar(36) id PK
+        +varchar(16) nik FK
+        +date tanggal_kematian
+        +varchar(100) tempat_kematian
+        +varchar(100) sebab_kematian
+        +varchar(16) nik_pelapor FK
+        +timestamp created_at
+        +timestamp updated_at
+        +tambahKematian()
+        +updateKematian()
+        +hapusKematian()
+        +getKematianById()
+        +getKematianByNIK()
+        +getAllKematian()
+        +filterKematian()
+    }
+    
+    class KEDATANGAN {
+        +varchar(36) id PK
+        +varchar(16) nik FK
+        +date tanggal_datang
+        +varchar(100) alamat_asal
+        +varchar(50) desa_asal
+        +varchar(50) kecamatan_asal
+        +varchar(50) kabupaten_asal
+        +varchar(50) provinsi_asal
+        +varchar(100) alamat_tujuan
+        +varchar(3) rt_tujuan
+        +varchar(3) rw_tujuan
+        +varchar(100) alasan
+        +varchar(20) no_surat_pindah
+        +timestamp created_at
+        +timestamp updated_at
+        +tambahKedatangan()
+        +updateKedatangan()
+        +hapusKedatangan()
+        +getKedatanganById()
+        +getKedatanganByNIK()
+        +getAllKedatangan()
+        +filterKedatangan()
+    }
+    
+    class PERPINDAHAN {
+        +varchar(36) id PK
+        +varchar(16) nik FK
+        +date tanggal_pindah
+        +varchar(100) alamat_asal
+        +varchar(3) rt_asal
+        +varchar(3) rw_asal
+        +varchar(100) alamat_tujuan
+        +varchar(50  rt_asal
+        +varchar(3) rw_asal
+        +varchar(100) alamat_tujuan
+        +varchar(50) desa_tujuan
+        +varchar(50) kecamatan_tujuan
+        +varchar(50) kabupaten_tujuan
+        +varchar(50) provinsi_tujuan
+        +varchar(100) alasan
+        +varchar(20) no_surat_pindah
+        +timestamp created_at
+        +timestamp updated_at
+        +tambahPerpindahan()
+        +updatePerpindahan()
+        +hapusPerpindahan()
+        +getPerpindahanById()
+        +getPerpindahanByNIK()
+        +getAllPerpindahan()
+        +filterPerpindahan()
+    }
+    
+    class SURAT_KETERANGAN {
+        +varchar(36) id PK
+        +varchar(20) nomor_surat
+        +enum jenis_surat
+        +varchar(16) nik_pemohon FK
+        +text keperluan
+        +date tanggal_terbit
+        +varchar(16) nik_penandatangan FK
+        +enum status
+        +timestamp created_at
+        +timestamp updated_at
+        +tambahSurat()
+        +updateSurat()
+        +hapusSurat()
+        +getSuratById()
+        +getSuratByPemohon()
+        +getAllSurat()
+        +filterSurat()
+    }
+    
+    class PENGGUNA {
+        +varchar(36) id PK
+        +varchar(50) username
+        +varchar(255) password
+        +varchar(100) nama
+        +enum role
+        +varchar(16) nik FK
+        +varchar(50) email
+        +varchar(255) foto
+        +boolean is_active
+        +timestamp last_login
+        +timestamp created_at
+        +timestamp updated_at
+        +tambahPengguna()
+        +updatePengguna()
+        +hapusPengguna()
+        +getPenggunaById()
+        +getPenggunaByUsername()
+        +getAllPengguna()
+        +validateLogin()
+        +resetPassword()
+    }
+    
+    class LOG_AKTIVITAS {
+        +varchar(36) id PK
+        +varchar(36) id_pengguna FK
+        +enum jenis_aktivitas
+        +varchar(50) modul
+        +text keterangan
+        +varchar(20) ip_address
+        +timestamp waktu
+        +tambahLog()
+        +getLogByPengguna()
+        +getAllLog()
+        +filterLog()
+    }
+    
+    PENDUDUK "1" -- "0..*" DETAIL_KARTU_KELUARGA : terdaftar pada
+    KARTU_KELUARGA "1" -- "0..*" DETAIL_KARTU_KELUARGA : memiliki
+    PENDUDUK "1" -- "0..*" KELAHIRAN : tercatat sebagai anak
+    PENDUDUK "1" -- "0..*" KELAHIRAN : tercatat sebagai ayah
+    PENDUDUK "1" -- "0..*" KELAHIRAN : tercatat sebagai ibu
+    PENDUDUK "1" -- "0..1" KEMATIAN : mengalami
+    PENDUDUK "1" -- "0..*" KEMATIAN : melaporkan
+    PENDUDUK "1" -- "0..*" KEDATANGAN : melakukan
+    PENDUDUK "1" -- "0..*" PERPINDAHAN : melakukan
+    PENDUDUK "1" -- "0..*" SURAT_KETERANGAN : memohon
+    PENDUDUK "1" -- "0..*" SURAT_KETERANGAN : menandatangani
+    PENDUDUK "1" -- "0..1" PENGGUNA : memiliki akun
+    PENGGUNA "1" -- "0..*" LOG_AKTIVITAS : melakukan

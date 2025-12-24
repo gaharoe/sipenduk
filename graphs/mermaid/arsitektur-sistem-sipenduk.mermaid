@@ -1,0 +1,62 @@
+graph TB
+    subgraph "Presentation Layer"
+        A1["Next.js Frontend"]
+        A2["Komponen UI (shadcn/ui)"]
+        A3["Tailwind CSS"]
+    end
+    
+    subgraph "Application Layer"
+        B1["Next.js App Router"]
+        B2["Server Components"]
+        B3["Client Components"]
+        B4["Server Actions"]
+        B5["API Routes"]
+    end
+    
+    subgraph "Data Access Layer"
+        C1["Redis Client"]
+        C2["Data Models"]
+        C3["Query Builder"]
+    end
+    
+    subgraph "Database Layer"
+        D1["Redis Database"]
+    end
+    
+    subgraph "Authentication & Authorization"
+        E1["NextAuth.js"]
+        E2["Role-based Access Control"]
+        E3["Session Management"]
+    end
+    
+    subgraph "Utility Services"
+        F1["PDF Generator"]
+        F2["File Upload"]
+        F3["Data Export"]
+        F4["Notifikasi"]
+        F5["Logging"]
+    end
+    
+    A1 <--> A2
+    A1 <--> A3
+    A1 <--> B1
+    B1 <--> B2
+    B1 <--> B3
+    B1 <--> B4
+    B1 <--> B5
+    B2 <--> C1
+    B3 <--> C1
+    B4 <--> C1
+    B5 <--> C1
+    C1 <--> C2
+    C1 <--> C3
+    C2 <--> D1
+    C3 <--> D1
+    B1 <--> E1
+    E1 <--> E2
+    E1 <--> E3
+    B1 <--> F1
+    B1 <--> F2
+    B1 <--> F3
+    B1 <--> F4
+    B1 <--> F5

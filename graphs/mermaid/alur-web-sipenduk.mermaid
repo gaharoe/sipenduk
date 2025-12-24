@@ -1,0 +1,29 @@
+graph TD
+    A["Login"] --> B["Dashboard"]
+    B --> C["Manajemen Data Penduduk"]
+    B --> D["Manajemen Kartu Keluarga"]
+    B --> E["Pencatatan Peristiwa"]
+    B --> F["Laporan dan Statistik"]
+    
+    C --> C1["Tambah Penduduk"]
+    C --> C2["Edit Penduduk"]
+    C --> C3["Hapus Penduduk"]
+    C --> C4["Lihat Detail Penduduk"]
+    
+    D --> D1["Tambah Kartu Keluarga"]
+    D --> D2["Edit Kartu Keluarga"]
+    D --> D3["Hapus Kartu Keluarga"]
+    D --> D4["Lihat Detail Kartu Keluarga"]
+    D --> D5["Tambah Anggota Keluarga"]
+    D --> D6["Hapus Anggota Keluarga"]
+    
+    E --> E1["Pencatatan Kelahiran"]
+    E --> E2["Pencatatan Kematian"]
+    E --> E3["Pencatatan Kedatangan"]
+    E --> E4["Pencatatan Perpindahan"]
+    
+    F --> F1["Statistik Penduduk"]
+    F --> F2["Laporan Penduduk"]
+    F --> F3["Laporan Kartu Keluarga"]
+    F --> F4["Laporan Peristiwa"]
+    F --> F5["Ekspor Data ke PDF"]

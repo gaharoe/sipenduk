@@ -1,0 +1,35 @@
+sequenceDiagram
+    actor Operator
+    participant UI as Antarmuka Pengguna
+    participant SC as Server Component
+    participant SA as Server Action
+    participant DB as Database Redis
+    
+    Operator->>UI: Akses halaman Pencatatan Kelahiran
+    UI->>SC: Request form kelahiran
+    SC->>DB: Query data penduduk (calon orang tua)
+    DB->>SC: Data penduduk
+    SC->>UI: Render form kelahiran dengan dropdown orang tua
+    
+    Operator->>UI: Isi data kelahiran
+    Operator->>UI: Pilih orang tua dari dropdown
+    Operator->>UI: Isi data bayi
+    Operator->>UI: Klik tombol Simpan
+    
+    UI->>SA: Kirim data kelahiran
+    SA->>SA: Validasi data
+    
+    alt Data Valid
+        SA->>DB: Buat data penduduk baru (bayi)
+        DB->>SA: Konfirmasi penyimpanan penduduk
+        SA->>DB: Simpan data kelahiran
+        DB->>SA: Konfirmasi penyimpanan kelahiran
+        SA->>DB: Update kartu keluarga
+        DB->>SA: Konfirmasi update KK
+        SA->>DB: Catat log aktivitas
+        SA->>UI: Notifikasi sukses
+        UI->>Operator: Tampilkan pesan sukses
+    else Data Tidak Valid
+        SA->>UI: Kirim pesan error
+        UI->>Operator: Tampilkan pesan error
+    end

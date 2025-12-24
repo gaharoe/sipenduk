@@ -1,0 +1,28 @@
+sequenceDiagram
+    actor Operator
+    participant UI as Antarmuka Pengguna
+    participant SC as Server Component
+    participant SA as Server Action
+    participant DB as Database Redis
+    
+    Operator->>UI: Akses halaman Tambah Penduduk
+    UI->>SC: Request form tambah penduduk
+    SC->>UI: Render form tambah penduduk
+    
+    Operator->>UI: Isi data penduduk
+    Operator->>UI: Upload foto
+    Operator->>UI: Klik tombol Simpan
+    
+    UI->>SA: Kirim data penduduk
+    SA->>SA: Validasi data
+    
+    alt Data Valid
+        SA->>DB: Simpan data penduduk
+        DB->>SA: Konfirmasi penyimpanan
+        SA->>DB: Catat log aktivitas
+        SA->>UI: Notifikasi sukses
+        UI->>Operator: Tampilkan pesan sukses
+    else Data Tidak Valid
+        SA->>UI: Kirim pesan error
+        UI->>Operator: Tampilkan pesan error
+    end
